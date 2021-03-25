@@ -1,0 +1,7 @@
+{% extends "Books/base.html" %}
+{% block content %}
+<center>
+{% for j in jlist %}
+<h2>Journal Name</h2>{{ j.jname }}<br>
+<h2>Journal Year</h2>{{ j.jyear }}<br><br>{% endfor %}</center>
+{% endblock %}

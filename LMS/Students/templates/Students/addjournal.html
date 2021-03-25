@@ -1,0 +1,15 @@
+{% extends "Students/base.html" %}
+{% block content %}
+   <div >
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend >New Journal Details</legend>
+                {{ form }}
+            </fieldset>
+            <div >
+                <button class="btn btn-outline-info" type="submit">Add Details</button>
+            </div>
+        </form>
+           </div>
+{% endblock content %}
