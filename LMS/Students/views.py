@@ -4,16 +4,22 @@ from django.contrib import messages
 from .models import Book
 from .forms import JournalForm
 
+from django.conf import settings
+from django.core.mail import send_mail
+
 # Create your views here.
 
 def home(request):
     return render(request,"Students/home.html")
 
 def login(request):
-    return render(request,"Students/login.html")
+    return render(request,'Students/login.html',{'title':'Sign In'})
+
+def logout(request):
+    return render(request,'Students/logout.html',{'title':'Sign Out'})
 
 def about(request):
-    return render(request,"Students/about.html")
+	return render(request,"Students/about.html")
 
 def viewjournals(request):
     return render(request,"Students/viewjournals.html",{'jlist':Journal.objects.all()})
@@ -29,3 +35,8 @@ def addjournal(request):
 	else:
 		form = JournalForm()
 	return render(request, 'Students/addjournal.html', {'form': form})
+
+def deletejournal(request, jid):
+    j = Journal.objects.get(jid=jid)
+    j.delete()
+    return redirect("/viewjournals")
